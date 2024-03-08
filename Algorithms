@@ -1,0 +1,14 @@
+1-set all valid alphabet capitalized and numbers from 0:9 in a list
+2-set all morse code characters in a list 
+3-welcome message to give the user all needed informations
+4-menu:
+   1-convert from alphabet to morse code
+   2-convert from morse code to alphabet
+5-if user deside to convert from alphabet to morse code:
+   1-get input from the user 
+   2- make sure it's valid and keep asking for valid input if the first one is wrong
+   3-for every single letter get the morse code copy for it and add it for the output
+6-if user desided t oconvert from morse cose to alphabet:
+   1-get input from the user 
+   2- make sure it's valid and keep asking for valid input if the first one is wrong
+   3-for every single letter get the alphabet copy for it and add it for the output
