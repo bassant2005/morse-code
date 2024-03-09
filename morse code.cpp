@@ -23,12 +23,12 @@ string alph[38]={"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O"
 
 //menu 
 cout<<"\nyou want to convert : \n1-morse->alphapet\n";
-cout<<"2-alphapet->morse\n3-exit\n(1,2,3)->"; 
+cout<<"2-alphapet->morse\n3-exit\n(1,2,3)-> "; 
 string convert ;
 cin>>convert;
 //exit the program 
 if(convert=="3"){
-    cout<<"bye!";
+    cout<<"\nbye! :(";
     break;
 }
 
@@ -36,31 +36,41 @@ if(convert=="3"){
 else if(convert=="1"){
 // Ignore the newline character in the input buffer
 cin.ignore(); 
-string code;
-//can convert words only 
-cout << "you can add singel words only\n";
-cout<<"if you have a sentence run the code more time to get all words ,please\n";
+string Mcode;
+cout<<"\nmake sure you enter 1 space after every letter and 3 spaces after every word to get the right sentence you need\n";	
 
 while(true){
-cout<<"Enter a marse code word: ";	
+cout<<"\nEnter a marse code sentence: ";	
 //Handling String Input With Spaces
-getline(cin, code); 
-istringstream iss(code);
+getline(cin, Mcode); 
+
 string letter;
 vector<string> word;
-    //creat an area of each single letter after we get space 
-    while (getline(iss, letter, ' ')) {
-    word.push_back(letter);   }
+//is an unsigned integer
+size_t found;
+//Manage spaces after every word 
+while ((found = Mcode.find("   ")) != string::npos) {
+        Mcode.replace(found,3, " | ");}
+
+istringstream iss(Mcode);
+//creat an area of each single letter after we get space 
+while (getline(iss, letter, ' ')) {
+   if (letter == "|")
+    word.push_back("   ");
+   else
+    word.push_back(letter);}
+
     bool valid = true;
     //check if all letter are valid
     for (const auto & x : word) {
-        if (find(begin(morse), end(morse),  x) == end(morse)) {
+        if (find(begin(morse), end(morse), x) == end(morse)) {
         valid = false;
         break;}}
     //convert every letter to the alphabete coby of it
     if (valid) {
+        cout<<"-> ";
         for (int i = 0; i < word.size(); i++) {
-            for (int j = 0; j < 38; j++) {
+            for (int j = 0; j < 39; j++) {
                 if (word[i] == morse[j]) {
                     cout << alph[j];
                     break;}}}
@@ -68,7 +78,7 @@ vector<string> word;
     break;}
     // invalid input 
     else {
-    cout << "Invalid input! Please enter characters ( . / - /space) only."<<endl;}}}
+    cout << "\nInvalid input! Please enter characters ( . / - /space) only."<<endl;}}}
     
 //convert form alphabet to Morse code 
 else if (convert == "2") {
@@ -76,7 +86,7 @@ string sentence;
 // Ignore the newline character in the input buffer
 cin.ignore();
     while (true) {
-    cout << "Enter a Sentence: ";
+    cout << "\nEnter a Sentence: ";
     //Handling String Input With Spaces
     getline(cin, sentence);
     //make sure all letters are capitalized 
@@ -89,16 +99,17 @@ cin.ignore();
                 break;}}
     //convert every single letter to the Morse code coby of it
     if (valid) {
+        cout<<"-> ";
         for (char &x : sentence) {
-            for (int i = 0; i < 38; i++) {
+            for (int i = 0; i <39; i++) {
                 if (alph[i] == string(1, x)) {
                     cout << morse[i] << " ";
                     break;}}}cout << endl;
             break;}    
     //invalid input         
     else {
-        cout << "Invalid input! Please enter characters from A to Z or 0 to 9 only." << endl;}}}
+        cout << "\nInvalid input! Please enter characters from A to Z or 0 to 9 only." << endl;}}}
 
 //invalid input  
 else{    
-    cout<<"Invalid input!try again";}}}
+    cout<<"\nInvalid input!try again\n";}}}
